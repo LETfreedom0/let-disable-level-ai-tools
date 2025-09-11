@@ -1,0 +1,67 @@
+{
+  "name": "let-disable-level-ai-tools",
+  "version": "1.0.0",
+  "description": "残疾等级评定助手 - 基于uni-app和Coze API的智能对话评估工具",
+  "main": "main.js",
+  "scripts": {
+    "dev:h5": "uni -p h5",
+    "dev:mp-weixin": "uni -p mp-weixin",
+    "build:h5": "uni build -p h5",
+    "build:mp-weixin": "uni build -p mp-weixin"
+  },
+  "keywords": [
+    "uni-app",
+    "vue",
+    "残疾等级评定",
+    "AI对话",
+    "Coze API"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@dcloudio/uni-app": "^2.0.0",
+    "@dcloudio/uni-h5": "^2.0.0",
+    "@dcloudio/uni-i18n": "^2.0.0",
+    "@dcloudio/uni-mp-weixin": "^2.0.0",
+    "@dcloudio/uni-ui": "^1.4.20",
+    "node-fetch": "^3.3.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@dcloudio/uni-cli-shared": "^2.0.0",
+    "@dcloudio/uni-helper-json": "^1.0.13",
+    "@dcloudio/uni-migration": "^2.0.0",
+    "@dcloudio/uni-template-compiler": "^2.0.0",
+    "@dcloudio/vue-cli-plugin-hbuilderx": "^2.0.0",
+    "@dcloudio/vue-cli-plugin-uni": "^2.0.0",
+    "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0",
+    "@dcloudio/webpack-uni-mp-loader": "^2.0.0",
+    "@dcloudio/webpack-uni-pages-loader": "^2.0.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-plugin-import": "^1.11.0",
+    "cross-env": "^7.0.2",
+    "jest": "^25.4.0",
+    "mini-types": "^0.1.4",
+    "miniprogram-api-typings": "^2.10.3",
+    "postcss-comment": "^2.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "Android >= 4",
+    "ios >= 8"
+  ],
+  "uni-app": {
+    "scripts": {
+      "h5-weixin": {
+        "title": "残疾等级评定助手",
+        "env": {
+          "UNI_PLATFORM": "h5"
+        },
+        "define": {
+          "H5_WEIXIN": true
+        }
+      }
+    }
+  }
+}

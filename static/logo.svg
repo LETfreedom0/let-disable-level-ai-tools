@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- 背景圆形 -->
+  <circle cx="100" cy="100" r="95" fill="#007AFF" />
+  <circle cx="100" cy="100" r="85" fill="#FFFFFF" />
+  
+  <!-- 人形图标 -->
+  <g transform="translate(60, 45)">
+    <!-- 头部 -->
+    <circle cx="40" cy="30" r="25" fill="#007AFF" />
+    
+    <!-- 身体 -->
+    <path d="M40,55 L40,110 M20,75 L60,75 M25,130 L40,110 M55,130 L40,110" 
+          stroke="#007AFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+  
+  <!-- 辅助圆环 -->
+  <path d="M100,15 A85,85 0 0,1 185,100" stroke="#11cd6e" stroke-width="6" fill="none" />
+  <path d="M15,100 A85,85 0 0,1 100,15" stroke="#ff6600" stroke-width="6" fill="none" />
+  
+  <!-- 星形标记 -->
+  <circle cx="100" cy="15" r="6" fill="#ff6600" />
+  <circle cx="15" cy="100" r="6" fill="#11cd6e" />
+  <circle cx="185" cy="100" r="6" fill="#007AFF" />
+</svg>
