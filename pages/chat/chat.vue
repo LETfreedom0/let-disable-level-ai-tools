@@ -282,7 +282,7 @@
 	}
 
 	.message-item.user {
-		justify-content: flex-end;
+		flex-direction: row-reverse;
 	}
 
 	.message-item.ai {

@@ -49,12 +49,12 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 				}
 			]
 		};
-		console.log('[DEBUG] 请求体:', JSON.stringify(requestBody, null, 2));
-		console.log('[DEBUG] 请求URL:', cozeConfig.apiUrl);
+		// console.log('[DEBUG] 请求体:', JSON.stringify(requestBody, null, 2));
+		// console.log('[DEBUG] 请求URL:', cozeConfig.apiUrl);
 		
 		// 处理流式响应的方式
 		if (requestBody.stream) {
-			console.log('[DEBUG] 使用流式响应模式');
+			// console.log('[DEBUG] 使用流式响应模式');
 			return new Promise((resolve, reject) => {
 				// 使用原生请求以支持流式响应
 				uni.request({
@@ -68,7 +68,7 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 					},
 					data: requestBody,
 					success: (res) => {
-						console.log('[DEBUG] 流式响应成功:', res.statusCode);
+						// console.log('[DEBUG] 流式响应成功:', res.statusCode);
 						if (res.statusCode !== 200) {
 							console.error('[DEBUG] API请求失败:', res.statusCode, res.data);
 							reject(new Error(`API请求失败: ${res.statusCode}`));
@@ -76,7 +76,7 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 						}
 						
 						// 记录完整的流式响应数据
-						console.log('[DEBUG] 完整响应数据:', JSON.stringify(res.data, null, 2));
+						// console.log('[DEBUG] 完整响应数据:', JSON.stringify(res.data, null, 2));
 						
 						// 解析流式响应
 						let fullMessage = '';
