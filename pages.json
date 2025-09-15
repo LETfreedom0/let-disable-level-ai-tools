@@ -3,6 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "残疾等级评定助手"
 			}
 		},
@@ -15,9 +16,9 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "残疾等级评定助手",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {}

@@ -3,29 +3,31 @@
 		<view class="header">
 			<image class="logo" src="/static/logo.svg"></image>
 			<text class="title">残疾等级评定助手</text>
+			<text class="subtitle">智能评估 · 专业指导</text>
 		</view>
 		
 		<view class="intro-card">
-			<text class="intro-title">欢迎使用残疾等级评定助手</text>
-			<text class="intro-text">通过智能AI对话，帮助您进行残疾等级初步评估。请点击下方按钮开始对话评估。</text>
-			<button class="start-btn" @click="startAssessment">开始评估</button>
+			<button class="start-btn" @click="startAssessment">开启智能评估</button>
 		</view>
 		
 		<view class="features">
 			<view class="feature-item">
-				<text class="feature-icon">🔍</text>
+				<view class="feature-icon-wrapper">
+					<text class="feature-icon">🔍</text>
+				</view>
 				<text class="feature-title">专业评估</text>
-				<text class="feature-desc">基于国家标准进行评定</text>
 			</view>
 			<view class="feature-item">
-				<text class="feature-icon">💬</text>
+				<view class="feature-icon-wrapper">
+					<text class="feature-icon">💬</text>
+				</view>
 				<text class="feature-title">智能对话</text>
-				<text class="feature-desc">通过对话收集评估信息</text>
 			</view>
 			<view class="feature-item">
-				<text class="feature-icon">📋</text>
+				<view class="feature-icon-wrapper">
+					<text class="feature-icon">📋</text>
+				</view>
 				<text class="feature-title">结果报告</text>
-				<text class="feature-desc">生成评估报告和建议</text>
 			</view>
 		</view>
 	</view>
@@ -54,94 +56,104 @@
 <style>
 	.container {
 		padding: 40rpx;
-		background-color: #f8f8f8;
+		background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
 		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		padding-top: var(--status-bar-height);
 	}
 	
 	.header {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 60rpx;
+		margin-bottom: 80rpx;
+		padding-top: 60rpx;
 	}
 	
 	.logo {
-		height: 180rpx;
-		width: 180rpx;
-		margin-bottom: 20rpx;
+		height: 120rpx;
+		width: 120rpx;
+		margin-bottom: 24rpx;
 	}
 	
 	.title {
 		font-size: 48rpx;
 		font-weight: bold;
-		color: #333;
+		color: #1e3a8a;
+	}
+
+	.subtitle {
+		font-size: 28rpx;
+		color: #3b82f6;
+		margin-top: 12rpx;
 	}
 	
 	.intro-card {
 		background-color: #ffffff;
-		border-radius: 20rpx;
-		padding: 40rpx;
-		margin-bottom: 40rpx;
-		box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
-	}
-	
-	.intro-title {
-		font-size: 36rpx;
-		font-weight: bold;
-		color: #333;
-		margin-bottom: 20rpx;
-		display: block;
-	}
-	
-	.intro-text {
-		font-size: 28rpx;
-		color: #666;
-		line-height: 1.6;
-		margin-bottom: 30rpx;
-		display: block;
+		border-radius: 24rpx;
+		padding: 80rpx 40rpx;
+		margin-bottom: 60rpx;
+		box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.08);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 	
 	.start-btn {
-		background-color: #007AFF;
-		color: #fff;
+		background: linear-gradient(45deg, #3b82f6 0%, #2563eb 100%);
+		color: #ffffff;
 		border-radius: 50rpx;
 		font-size: 32rpx;
 		font-weight: bold;
-		margin-top: 20rpx;
+		padding: 28rpx 100rpx;
+		box-shadow: 0 8rpx 20rpx rgba(59, 130, 246, 0.3);
+		border: none;
+		transition: all 0.3s ease;
+	}
+	
+	.start-btn:active {
+		opacity: 0.9;
+		transform: scale(0.96);
 	}
 	
 	.features {
 		display: flex;
-		justify-content: space-between;
-		margin-top: 20rpx;
+		justify-content: space-around;
+		gap: 20rpx;
+		margin-top: 40rpx;
 	}
 	
 	.feature-item {
-		background-color: #ffffff;
-		border-radius: 16rpx;
-		padding: 30rpx;
-		width: 28%;
+		background-color: transparent;
+		padding: 20rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+		text-align: center;
 	}
 	
+	.feature-icon-wrapper {
+		background-color: #ffffff;
+		border-radius: 50%;
+		width: 100rpx;
+		height: 100rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20rpx;
+		box-shadow: 0 6rpx 15rpx rgba(0, 0, 0, 0.07);
+	}
+
 	.feature-icon {
-		font-size: 60rpx;
-		margin-bottom: 16rpx;
+		font-size: 48rpx;
 	}
 	
 	.feature-title {
-		font-size: 28rpx;
-		font-weight: bold;
-		color: #333;
-		margin-bottom: 10rpx;
-	}
-	
-	.feature-desc {
-		font-size: 24rpx;
-		color: #999;
-		text-align: center;
+		font-size: 26rpx;
+		font-weight: 500;
+		color: #334155;
 	}
 </style>

@@ -25,6 +25,12 @@ console.log('[DEBUG] Coze API配置:', {
  */
 export async function sendMessageToCoze(messages, conversationId, onStreamUpdate) {
 	try {
+		// 先检查网络状态
+		const networkStatus = await checkNetworkStatus();
+		if (!networkStatus.isConnected) {
+			throw new Error('网络连接不可用，请检查网络设置');
+		}
+		
 		// 获取最后一条用户消息
 		const lastUserMessage = messages.length > 0 ? messages[messages.length - 1] : { content: '' };
 		console.log('[DEBUG] 最后一条用户消息:', lastUserMessage);
@@ -33,7 +39,7 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 		const requestBody = {
 			bot_id: cozeConfig.botId,
 			user_id: conversationId || generateUUID(), // 使用会话ID作为用户ID
-			stream: true,
+			stream: true, // 开启流式响应
 			auto_save_history: true,
 			additional_messages: [
 				{
@@ -54,6 +60,7 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 				uni.request({
 					url: cozeConfig.apiUrl,
 					method: 'POST',
+					timeout: 15000, // 添加15秒超时设置
 					header: {
 						'Content-Type': 'application/json',
 						'Authorization': `Bearer ${cozeConfig.apiKey}`,
@@ -166,11 +173,12 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 				});
 			});
 		} else {
-			// 非流式响应处理（原有逻辑）
+			// 非流式响应处理
 			console.log('[DEBUG] 使用非流式响应模式');
-			const response = await uni.request({
+			const res = await uni.request({
 				url: cozeConfig.apiUrl,
 				method: 'POST',
+				timeout: 15000,
 				header: {
 					'Content-Type': 'application/json',
 					'Authorization': `Bearer ${cozeConfig.apiKey}`
@@ -179,14 +187,23 @@ export async function sendMessageToCoze(messages, conversationId, onStreamUpdate
 			});
 			
 			// 检查响应状态
-			console.log('[DEBUG] 响应状态码:', response.statusCode);
-			if (response.statusCode !== 200) {
-				console.error('[DEBUG] API请求失败:', response.statusCode, response.data);
-				throw new Error(`API请求失败: ${response.statusCode}`);
+			console.log('[DEBUG] 响应数据:', res);
+			console.log('[DEBUG] 响应状态码:', res.statusCode);
+			if (res.statusCode !== 200) {
+				console.error('[DEBUG] API请求失败:', res.statusCode, res.data);
+				throw new Error(`API请求失败: ${res.statusCode}`);
 			}
 			
-			// 解析并返回AI回复 - 适配v3 API响应格式
-			const responseData = response.data;
+			// 解析并返回AI回复
+			let responseData = res.data;
+			if (typeof responseData === 'string') {
+				try {
+					responseData = JSON.parse(responseData);
+				} catch (e) {
+					console.error('[DEBUG] 响应数据JSON解析失败:', e, responseData);
+					throw new Error('无法解析API响应数据');
+				}
+			}
 			console.log('[DEBUG] 完整响应数据:', JSON.stringify(responseData, null, 2));
 			
 			// v3 API返回格式可能是 data.messages[0].content
@@ -266,5 +283,32 @@ export function generateUUID() {
 		const r = Math.random() * 16 | 0;
 		const v = c === 'x' ? r : (r & 0x3 | 0x8);
 		return v.toString(16);
+	});
+}
+
+/**
+ * 检查网络状态
+ * @returns {Promise} - 返回包含网络状态信息的Promise对象
+ */
+export function checkNetworkStatus() {
+	return new Promise((resolve) => {
+		uni.getNetworkType({
+			success: function(res) {
+				const isConnected = res.networkType !== 'none';
+				console.log('[DEBUG] 网络状态检查:', res.networkType, isConnected ? '可用' : '不可用');
+				resolve({
+					isConnected: isConnected,
+					networkType: res.networkType
+				});
+			},
+			fail: function() {
+				console.error('[DEBUG] 网络状态检查失败');
+				// 如果检查失败，假设网络可用，避免阻止用户操作
+				resolve({
+					isConnected: true,
+					networkType: 'unknown'
+				});
+			}
+		});
 	});
 }
