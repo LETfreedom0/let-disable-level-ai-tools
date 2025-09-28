@@ -298,6 +298,8 @@
 	overflow: hidden;
 }
 
+
+
 .chat-header {
 	background-color: #FFFFFF;
 	padding: 0 32rpx;
@@ -351,6 +353,7 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100%;
+	padding-top: 20px;
 }
 
 .message-wrapper {

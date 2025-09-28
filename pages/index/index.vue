@@ -94,7 +94,10 @@
 		text-align: center;
 	}
 	/* #ifdef MP-WEIXIN */
-	.header { padding-right: 120rpx; }
+	.header { 
+		padding-right: 120rpx; 
+		padding-left: 120rpx; /* 左右对称，保持居中 */
+	}
 	/* #endif */
 
 	.title {
