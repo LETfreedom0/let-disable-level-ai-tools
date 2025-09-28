@@ -13,6 +13,20 @@
 				"navigationBarTitleText": "残疾等级评定",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/license-consult/index",
+			"style": {
+				"navigationBarTitleText": "驾照咨询",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/exam-consult/index",
+			"style": {
+				"navigationBarTitleText": "公考咨询",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
@@ -21,5 +35,11 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^ChatUI$": "@/components/ChatUI.vue"
+		}
+	}
 }
